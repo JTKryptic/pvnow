@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:pvnow/pages/login_page.dart';
+import 'package:pvnow/theme/dark_mode.dart';
+import 'package:pvnow/theme/light_mode.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
+      theme: lightMode,
+      darkTheme: darkMode,
     );
   }
 }
