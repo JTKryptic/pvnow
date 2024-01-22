@@ -1,20 +1,54 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
+import 'package:pvnow/components/helper_functions.dart';
 import 'package:pvnow/components/textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final void Function()? onTap;
 
-  LoginPage({super.key, required this.onTap});
+  const LoginPage({super.key, required this.onTap});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   // text controllers
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
 
   // login function
-  void login() {}
+  void login() async {
+    // loading circle
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    //try signing in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+
+      // pop loading circle
+      if (context.mounted) Navigator.pop(context);
+    }
+
+    // display any errors
+    on FirebaseAuthException catch (e) {
+      // Pop loading circle
+      if (context.mounted) Navigator.pop(context);
+
+      // display error message to user
+      if (context.mounted) displayMessageToUser(e.code, context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +98,7 @@ class LoginPage extends StatelessWidget {
                 text: "Log In",
                 onTap: login,
                 buttonColor: Color.fromRGBO(212, 167, 253, 1),
-                textColor: Theme.of(context).colorScheme.inversePrimary,
+                textColor: Theme.of(context).colorScheme.primary,
               ),
 
               const SizedBox(height: 25),
@@ -79,7 +113,7 @@ class LoginPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.inversePrimary),
                   ),
                   GestureDetector(
-                    onTap: onTap,
+                    onTap: widget.onTap,
                     child: const Text(
                       " Register Here",
                       style: TextStyle(

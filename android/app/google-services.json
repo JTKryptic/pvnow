@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796598526383",
+    "project_id": "pv-now",
+    "storage_bucket": "pv-now.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796598526383:android:491bc76a61139302804f5a",
+        "android_client_info": {
+          "package_name": "com.example.pvnow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd5wo8WuWNdZ2IGlHOGRPXxCquDEcjYcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
