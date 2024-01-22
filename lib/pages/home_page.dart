@@ -14,7 +14,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text("Home"),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(212, 167, 253, 1),
         actions: [
