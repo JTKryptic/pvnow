@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:pvnow/pages/login_page.dart';
+import 'package:pvnow/auth/login_register.dart';
 import 'package:pvnow/theme/dark_mode.dart';
 import 'package:pvnow/theme/light_mode.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const LoginOrRegister(),
       theme: lightMode,
       darkTheme: darkMode,
     );

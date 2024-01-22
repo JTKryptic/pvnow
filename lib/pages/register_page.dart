@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
 import 'package:pvnow/components/textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final void Function()? onTap;
 
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
   // text controllers
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confPassController = TextEditingController();
 
-  // login function
-  void login() {}
+  // register function
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,15 @@ class LoginPage extends StatelessWidget {
                 width: 250,
                 height: 250,
               ),
+
+              // username
+              MyTextField(
+                hintText: "Username",
+                obscureText: false,
+                controller: usernameController,
+              ),
+
+              const SizedBox(height: 10),
 
               // email
               MyTextField(
@@ -51,6 +62,15 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
+              // confirm password
+              MyTextField(
+                hintText: "Confirm Password",
+                obscureText: false,
+                controller: confPassController,
+              ),
+
+              const SizedBox(height: 10),
+
               // forgot password
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -59,10 +79,10 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // sign in button
+              // register button
               MyButton(
-                text: "Log In",
-                onTap: login,
+                text: "Register",
+                onTap: register,
               ),
 
               const SizedBox(height: 25),
@@ -72,14 +92,14 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary),
                   ),
                   GestureDetector(
                     onTap: onTap,
                     child: const Text(
-                      " Register Here",
+                      " Login Here",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
