@@ -83,6 +83,8 @@ class RegisterPage extends StatelessWidget {
               MyButton(
                 text: "Register",
                 onTap: register,
+                buttonColor: Color.fromRGBO(212, 167, 253, 1),
+                textColor: Theme.of(context).colorScheme.inversePrimary,
               ),
 
               const SizedBox(height: 25),
@@ -102,6 +104,7 @@ class RegisterPage extends StatelessWidget {
                       " Login Here",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(212, 167, 253, 1),
                       ),
                     ),
                   )
