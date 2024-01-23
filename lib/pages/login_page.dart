@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
 import 'package:pvnow/components/helper_functions.dart';
 import 'package:pvnow/components/textfield.dart';
+import 'package:pvnow/theme/pv_colors.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
               MyButton(
                 text: "Log In",
                 onTap: login,
-                buttonColor: Color.fromRGBO(212, 167, 253, 1),
+                buttonColor: pvPurpleLight,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
 
