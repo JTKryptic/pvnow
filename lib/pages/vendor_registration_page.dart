@@ -81,7 +81,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
 
               // brand name
               MyTextField(
-                hintText: "Brand Name",
+                hintText: "Company Name",
                 obscureText: false,
                 controller: usernameController,
               ),
