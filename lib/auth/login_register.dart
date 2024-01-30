@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pvnow/pages/login_page.dart';
 import 'package:pvnow/pages/register_page.dart';
+import 'package:pvnow/pages/vendor_registration_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
@@ -12,10 +13,19 @@ class LoginOrRegister extends StatefulWidget {
 class _LoginOrRegisterState extends State<LoginOrRegister> {
   // show login by default
   bool showLoginPage = true;
+  bool showVendorRegistration = false;
 
   // toggle between login and register
-  void togglePages() {
+  void toggleRegister() {
     setState(() {
+      showLoginPage = !showLoginPage;
+    });
+  }
+
+  // toggle between login and register
+  void toggleVendorRegister() {
+    setState(() {
+      showVendorRegistration = !showVendorRegistration;
       showLoginPage = !showLoginPage;
     });
   }
@@ -23,9 +33,14 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage) {
-      return LoginPage(onTap: togglePages);
+      return LoginPage(
+        onUserTap: toggleRegister,
+        onVendorTap: toggleVendorRegister,
+      );
+    } else if (showVendorRegistration) {
+      return VendorRegisterPage(onTap: toggleVendorRegister);
     } else {
-      return RegisterPage(onTap: togglePages);
+      return RegisterPage(onTap: toggleRegister);
     }
   }
 }
