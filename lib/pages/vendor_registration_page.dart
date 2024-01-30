@@ -7,25 +7,24 @@ import 'package:pvnow/components/helper_functions.dart';
 import 'package:pvnow/components/textfield.dart';
 import 'package:pvnow/theme/pv_colors.dart';
 
-class LoginPage extends StatefulWidget {
-  final void Function()? onUserTap;
-  final void Function()? onVendorTap;
+class VendorRegisterPage extends StatefulWidget {
+  final void Function()? onTap;
 
-  const LoginPage(
-      {super.key, required this.onUserTap, required this.onVendorTap});
+  const VendorRegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<VendorRegisterPage> createState() => _VendorRegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _VendorRegisterPageState extends State<VendorRegisterPage> {
   // text controllers
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPwController = TextEditingController();
 
-  // login function
-  void login() async {
+  // register function
+  void registerUser() async {
     // loading circle
     showDialog(
       context: context,
@@ -34,22 +33,32 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    //try signing in
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-
-      // pop loading circle
-      if (mounted) Navigator.pop(context);
-    }
-
-    // display any errors
-    on FirebaseAuthException catch (e) {
+    // make sure passwords match
+    if (passwordController.text != confirmPwController.text) {
       // Pop loading circle
       Navigator.pop(context);
 
-      // display error message to user
-      displayMessageToUser(e.code, context);
+      // notify users that the passwords do not match
+      displayMessageToUser("Passwords don't match!", context);
+    }
+
+    // if passwords match
+    else {
+      try {
+        // try to create user
+        UserCredential? userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text);
+
+        // Pop loading circle
+        Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        // Pop loading circle
+        Navigator.pop(context);
+
+        // display error message to user
+        displayMessageToUser(e.code, context);
+      }
     }
   }
 
@@ -70,6 +79,15 @@ class _LoginPageState extends State<LoginPage> {
                 height: 250,
               ),
 
+              // brand name
+              MyTextField(
+                hintText: "Brand Name",
+                obscureText: false,
+                controller: usernameController,
+              ),
+
+              const SizedBox(height: 10),
+
               // email
               MyTextField(
                 hintText: "Email",
@@ -88,6 +106,15 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 10),
 
+              // confirm password
+              MyTextField(
+                hintText: "Confirm Password",
+                obscureText: true,
+                controller: confirmPwController,
+              ),
+
+              const SizedBox(height: 10),
+
               // forgot password
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -96,54 +123,32 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 25),
 
-              // log in button
+              // register button
               MyButton(
-                text: "Log In",
-                onTap: login,
+                text: "Register",
+                onTap: registerUser,
                 buttonColor: pvPurpleLight,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
 
               const SizedBox(height: 25),
 
-              // register for user account
+              // register button
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary),
                   ),
                   GestureDetector(
-                    onTap: widget.onUserTap,
+                    onTap: widget.onTap,
                     child: const Text(
-                      " Sign Up Here",
+                      " Login Here",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(212, 167, 253, 1),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
-              // register for vendor account
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Are you a vendor?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onVendorTap,
-                    child: Text(
-                      " Register Here",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: pvGold,
                       ),
                     ),
                   )
