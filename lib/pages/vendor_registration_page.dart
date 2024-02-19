@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
@@ -18,7 +19,8 @@ class VendorRegisterPage extends StatefulWidget {
 
 class _VendorRegisterPageState extends State<VendorRegisterPage> {
   // text controllers
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController brandnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
@@ -50,8 +52,12 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
+        // create user document and add to firestore database
+        createVendorDocument(userCredential, nameController.text,
+            brandnameController.text, true);
+
         // Pop loading circle
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         // Pop loading circle
         Navigator.pop(context);
@@ -59,6 +65,21 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
         // display error message to user
         displayMessageToUser(e.code, context);
       }
+    }
+  }
+
+  Future<void> createVendorDocument(UserCredential? userCredential, String name,
+      String brandname, bool isVendor) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection("Vendors")
+          .doc(userCredential.user!.email)
+          .set({
+        'email': userCredential.user!.email,
+        'name': name,
+        'brandname': brandname,
+        'isVendor': isVendor,
+      });
     }
   }
 
@@ -79,11 +100,20 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                 height: 250,
               ),
 
-              // brand name
+              // name
+              MyTextField(
+                hintText: "Name",
+                obscureText: false,
+                controller: nameController,
+              ),
+
+              const SizedBox(height: 10),
+
+              // name
               MyTextField(
                 hintText: "Brand Name",
                 obscureText: false,
-                controller: usernameController,
+                controller: brandnameController,
               ),
 
               const SizedBox(height: 10),

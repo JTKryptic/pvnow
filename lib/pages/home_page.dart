@@ -1,14 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pvnow/components/drawer.dart';
+import 'package:pvnow/theme/pv_colors.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
-
-  void logout() {
-    FirebaseAuth.instance.signOut();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +13,9 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(212, 167, 253, 1),
-        actions: [
-          IconButton(onPressed: logout, icon: Icon(Icons.logout)),
-        ],
+        backgroundColor: pvPurpleDark,
       ),
+      drawer: MyDrawer(),
     );
   }
 }

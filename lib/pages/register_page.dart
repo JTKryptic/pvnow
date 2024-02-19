@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
@@ -18,7 +19,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   // text controllers
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
@@ -46,12 +47,17 @@ class _RegisterPageState extends State<RegisterPage> {
     else {
       try {
         // try to create user
-        UserCredential? userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
+        UserCredential? userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        // create user document and add to firestore database
+        createUserDocument(userCredential, nameController.text, false);
 
         // Pop loading circle
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         // Pop loading circle
         Navigator.pop(context);
@@ -59,6 +65,20 @@ class _RegisterPageState extends State<RegisterPage> {
         // display error message to user
         displayMessageToUser(e.code, context);
       }
+    }
+  }
+
+  Future<void> createUserDocument(
+      UserCredential? userCredential, String name, bool isVendor) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .set({
+        'email': userCredential.user!.email,
+        'name': name,
+        'isVendor': isVendor,
+      });
     }
   }
 
@@ -81,9 +101,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
               // username
               MyTextField(
-                hintText: "Username",
+                hintText: "Name",
                 obscureText: false,
-                controller: usernameController,
+                controller: nameController,
               ),
 
               const SizedBox(height: 10),
