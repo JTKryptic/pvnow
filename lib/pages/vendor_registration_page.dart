@@ -53,8 +53,8 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                 email: emailController.text, password: passwordController.text);
 
         // create user document and add to firestore database
-        createVendorDocument(userCredential, nameController.text,
-            brandnameController.text, true);
+        createVendorDocument(
+            userCredential, nameController.text, brandnameController.text);
 
         // Pop loading circle
         if (context.mounted) Navigator.pop(context);
@@ -68,8 +68,8 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
     }
   }
 
-  Future<void> createVendorDocument(UserCredential? userCredential, String name,
-      String brandname, bool isVendor) async {
+  Future<void> createVendorDocument(
+      UserCredential? userCredential, String name, String brandname) async {
     if (userCredential != null && userCredential.user != null) {
       await FirebaseFirestore.instance
           .collection("Vendors")
@@ -78,7 +78,6 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
         'email': userCredential.user!.email,
         'name': name,
         'brandname': brandname,
-        'isVendor': isVendor,
       });
     }
   }

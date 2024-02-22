@@ -54,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         // create user document and add to firestore database
-        createUserDocument(userCredential, nameController.text, false);
+        createUserDocument(userCredential, nameController.text);
 
         // Pop loading circle
         if (context.mounted) Navigator.pop(context);
@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> createUserDocument(
-      UserCredential? userCredential, String name, bool isVendor) async {
+      UserCredential? userCredential, String name) async {
     if (userCredential != null && userCredential.user != null) {
       await FirebaseFirestore.instance
           .collection("Users")
@@ -77,7 +77,6 @@ class _RegisterPageState extends State<RegisterPage> {
           .set({
         'email': userCredential.user!.email,
         'name': name,
-        'isVendor': isVendor,
       });
     }
   }
