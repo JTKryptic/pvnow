@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pvnow/theme/pv_colors.dart';
 
 class VendorHomepage extends StatelessWidget {
   const VendorHomepage({super.key});
@@ -16,7 +17,7 @@ class VendorHomepage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Vendor Home"),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(212, 167, 253, 1),
+        backgroundColor: pvPurpleLight,
         actions: [
           IconButton(onPressed: logout, icon: Icon(Icons.logout)),
         ],
