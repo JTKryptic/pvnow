@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pvnow/auth/login_register.dart';
-import 'package:pvnow/pages/home_page.dart';
-import 'package:pvnow/pages/vendor_home.dart';
+import 'package:pvnow/controllers/login_register.dart';
+import 'package:pvnow/views/home_page.dart';
+import 'package:pvnow/views/vendor_home.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

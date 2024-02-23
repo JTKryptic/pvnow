@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pvnow/pages/login_page.dart';
-import 'package:pvnow/pages/register_page.dart';
-import 'package:pvnow/pages/vendor_registration_page.dart';
+import 'package:pvnow/views/login_page.dart';
+import 'package:pvnow/views/register_page.dart';
+import 'package:pvnow/views/vendor_registration_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
