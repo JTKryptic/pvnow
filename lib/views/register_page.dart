@@ -146,7 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
               MyButton(
                 text: "Register",
                 onTap: registerUser,
-                buttonColor: pvPurpleLight,
+                buttonColor: pvPurple,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
 

@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
               MyButton(
                 text: "Log In",
                 onTap: login,
-                buttonColor: pvPurpleLight,
+                buttonColor: pvPurple,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
 
