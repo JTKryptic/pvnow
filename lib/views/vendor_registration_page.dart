@@ -86,104 +86,106 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25, right: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // logo
-              Image.asset(
-                'assets/icons/logo.png',
-                width: 250,
-                height: 250,
-              ),
-
-              // name
-              MyTextField(
-                hintText: "Name",
-                obscureText: false,
-                controller: nameController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // name
-              MyTextField(
-                hintText: "Brand Name",
-                obscureText: false,
-                controller: brandnameController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // email
-              MyTextField(
-                hintText: "Email",
-                obscureText: false,
-                controller: emailController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // password
-              MyTextField(
-                hintText: "Password",
-                obscureText: true,
-                controller: passwordController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // confirm password
-              MyTextField(
-                hintText: "Confirm Password",
-                obscureText: true,
-                controller: confirmPwController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // forgot password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text("Forgot Password")],
-              ),
-
-              const SizedBox(height: 25),
-
-              // register button
-              MyButton(
-                text: "Register",
-                onTap: registerUser,
-                buttonColor: pvPurple,
-                textColor: Theme.of(context).colorScheme.primary,
-              ),
-
-              const SizedBox(height: 25),
-
-              // register button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onTap,
-                    child: const Text(
-                      " Login Here",
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // logo
+                Image.asset(
+                  'assets/icons/logo.png',
+                  width: 250,
+                  height: 250,
+                ),
+      
+                // name
+                MyTextField(
+                  hintText: "Name",
+                  obscureText: false,
+                  controller: nameController,
+                ),
+      
+                const SizedBox(height: 10),
+      
+                // name
+                MyTextField(
+                  hintText: "Brand Name",
+                  obscureText: false,
+                  controller: brandnameController,
+                ),
+      
+                const SizedBox(height: 10),
+      
+                // email
+                MyTextField(
+                  hintText: "Email",
+                  obscureText: false,
+                  controller: emailController,
+                ),
+      
+                const SizedBox(height: 10),
+      
+                // password
+                MyTextField(
+                  hintText: "Password",
+                  obscureText: true,
+                  controller: passwordController,
+                ),
+      
+                const SizedBox(height: 10),
+      
+                // confirm password
+                MyTextField(
+                  hintText: "Confirm Password",
+                  obscureText: true,
+                  controller: confirmPwController,
+                ),
+      
+                const SizedBox(height: 10),
+      
+                // forgot password
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text("Forgot Password")],
+                ),
+      
+                const SizedBox(height: 25),
+      
+                // register button
+                MyButton(
+                  text: "Register",
+                  onTap: registerUser,
+                  buttonColor: pvPurple,
+                  textColor: Theme.of(context).colorScheme.primary,
+                ),
+      
+                const SizedBox(height: 25),
+      
+                // register button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account?",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(212, 167, 253, 1),
-                      ),
+                          color: Theme.of(context).colorScheme.inversePrimary),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        " Login Here",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(212, 167, 253, 1),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
