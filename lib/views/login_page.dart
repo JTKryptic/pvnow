@@ -70,33 +70,33 @@ class _LoginPageState extends State<LoginPage> {
                   width: 250,
                   height: 250,
                 ),
-        
+
                 // email
                 MyTextField(
                   hintText: "Email",
                   obscureText: false,
                   controller: emailController,
                 ),
-        
+
                 const SizedBox(height: 10),
-        
+
                 // password
                 MyTextField(
                   hintText: "Password",
                   obscureText: true,
                   controller: passwordController,
                 ),
-        
+
                 const SizedBox(height: 10),
-        
+
                 // forgot password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [Text("Forgot Password")],
                 ),
-        
+
                 const SizedBox(height: 25),
-        
+
                 // log in button
                 MyButton(
                   text: "Log In",
@@ -104,9 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                   buttonColor: pvPurple,
                   textColor: Theme.of(context).colorScheme.primary,
                 ),
-        
+
                 const SizedBox(height: 25),
-        
+
                 // register for user account
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
-        
+
                 // register for vendor account
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                         " Register Here",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: pvGold,
+                          color: pvGoldLight,
                         ),
                       ),
                     )
