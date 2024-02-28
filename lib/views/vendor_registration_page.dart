@@ -99,60 +99,60 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                   width: 250,
                   height: 250,
                 ),
-      
+
                 // name
                 MyTextField(
                   hintText: "Name",
                   obscureText: false,
                   controller: nameController,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // name
                 MyTextField(
                   hintText: "Brand Name",
                   obscureText: false,
                   controller: brandnameController,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // email
                 MyTextField(
                   hintText: "Email",
                   obscureText: false,
                   controller: emailController,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // password
                 MyTextField(
                   hintText: "Password",
                   obscureText: true,
                   controller: passwordController,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // confirm password
                 MyTextField(
                   hintText: "Confirm Password",
                   obscureText: true,
                   controller: confirmPwController,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // forgot password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [Text("Forgot Password")],
                 ),
-      
+
                 const SizedBox(height: 25),
-      
+
                 // register button
                 MyButton(
                   text: "Register",
@@ -160,9 +160,9 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                   buttonColor: pvPurple,
                   textColor: Theme.of(context).colorScheme.primary,
                 ),
-      
+
                 const SizedBox(height: 25),
-      
+
                 // register button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
