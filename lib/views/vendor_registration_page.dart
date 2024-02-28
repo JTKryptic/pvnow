@@ -86,8 +86,8 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(25),
             child: Column(
