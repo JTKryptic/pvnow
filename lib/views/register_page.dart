@@ -53,6 +53,8 @@ class _RegisterPageState extends State<RegisterPage> {
           password: passwordController.text,
         );
 
+        userCredential.user!.updateDisplayName(nameController.text);
+
         // create user document and add to firestore database
         createUserDocument(userCredential, nameController.text);
 
