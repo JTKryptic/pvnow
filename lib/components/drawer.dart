@@ -36,6 +36,13 @@ class MyDrawer extends StatelessWidget {
                   title: Text("SETTINGS"),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text("ACCOUNT"),
+                ),
+              ),
             ],
           ),
 
@@ -44,12 +51,12 @@ class MyDrawer extends StatelessWidget {
             child: ListTile(
               leading: Icon(
                 Icons.logout,
-                color: pvGold,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               title: Text(
                 "LOGOUT",
                 style: TextStyle(
-                  color: pvGold,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               onTap: logout,

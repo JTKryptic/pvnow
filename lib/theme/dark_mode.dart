@@ -8,8 +8,8 @@ ThemeData darkMode = ThemeData(
   colorScheme: ColorScheme.dark(
     background: Colors.grey.shade900,
     primary: Colors.grey.shade800,
-    secondary: Colors.grey.shade700,
-    inversePrimary: Colors.grey.shade500,
+    secondary: pvGoldLight,
+    inversePrimary: Colors.white,
     tertiary: pvPurpleDark,
   ),
   textTheme: ThemeData.dark().textTheme.apply(

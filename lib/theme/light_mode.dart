@@ -8,8 +8,8 @@ ThemeData lightMode = ThemeData(
   colorScheme: ColorScheme.light(
     background: Colors.white,
     primary: Colors.white,
-    secondary: Colors.grey.shade400,
-    inversePrimary: Colors.grey.shade600,
+    secondary: pvGoldDark,
+    inversePrimary: Colors.black,
     tertiary: pvPurpleLight,
   ),
   textTheme: ThemeData.light().textTheme.apply(

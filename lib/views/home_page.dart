@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:pvnow/components/bottom_nav.dart';
 import 'package:pvnow/components/drawer.dart';
 import 'package:pvnow/theme/pv_colors.dart';
 
@@ -14,9 +15,10 @@ class Homepage extends StatelessWidget {
         title: Text("Home"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
-        iconTheme: IconThemeData(color: pvGold),
+        iconTheme: IconThemeData(color: pvGoldLight),
       ),
       drawer: MyDrawer(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
