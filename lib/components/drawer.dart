@@ -14,7 +14,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: pvPurpleDark,
+      backgroundColor: Theme.of(context).colorScheme.tertiary,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -42,8 +42,16 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 50, left: 25),
             child: ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("LOGOUT"),
+              leading: Icon(
+                Icons.logout,
+                color: pvGold,
+              ),
+              title: Text(
+                "LOGOUT",
+                style: TextStyle(
+                  color: pvGold,
+                ),
+              ),
               onTap: logout,
             ),
           ),

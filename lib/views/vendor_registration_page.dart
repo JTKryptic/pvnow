@@ -156,7 +156,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
               MyButton(
                 text: "Register",
                 onTap: registerUser,
-                buttonColor: pvPurpleLight,
+                buttonColor: pvPurple,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
 

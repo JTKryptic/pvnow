@@ -13,7 +13,8 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: pvPurpleDark,
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        iconTheme: IconThemeData(color: pvGold),
       ),
       drawer: MyDrawer(),
     );
