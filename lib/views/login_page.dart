@@ -58,98 +58,100 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25, right: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // logo
-              Image.asset(
-                'assets/icons/logo.png',
-                width: 250,
-                height: 250,
-              ),
-
-              // email
-              MyTextField(
-                hintText: "Email",
-                obscureText: false,
-                controller: emailController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // password
-              MyTextField(
-                hintText: "Password",
-                obscureText: true,
-                controller: passwordController,
-              ),
-
-              const SizedBox(height: 10),
-
-              // forgot password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text("Forgot Password")],
-              ),
-
-              const SizedBox(height: 25),
-
-              // log in button
-              MyButton(
-                text: "Log In",
-                onTap: login,
-                buttonColor: pvPurple,
-                textColor: Theme.of(context).colorScheme.primary,
-              ),
-
-              const SizedBox(height: 25),
-
-              // register for user account
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onUserTap,
-                    child: const Text(
-                      " Sign Up Here",
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 25, right: 25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // logo
+                Image.asset(
+                  'assets/icons/logo.png',
+                  width: 250,
+                  height: 250,
+                ),
+        
+                // email
+                MyTextField(
+                  hintText: "Email",
+                  obscureText: false,
+                  controller: emailController,
+                ),
+        
+                const SizedBox(height: 10),
+        
+                // password
+                MyTextField(
+                  hintText: "Password",
+                  obscureText: true,
+                  controller: passwordController,
+                ),
+        
+                const SizedBox(height: 10),
+        
+                // forgot password
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text("Forgot Password")],
+                ),
+        
+                const SizedBox(height: 25),
+        
+                // log in button
+                MyButton(
+                  text: "Log In",
+                  onTap: login,
+                  buttonColor: pvPurple,
+                  textColor: Theme.of(context).colorScheme.primary,
+                ),
+        
+                const SizedBox(height: 25),
+        
+                // register for user account
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account?",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(212, 167, 253, 1),
-                      ),
+                          color: Theme.of(context).colorScheme.inversePrimary),
                     ),
-                  )
-                ],
-              ),
-
-              // register for vendor account
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Are you a vendor?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.inversePrimary),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onVendorTap,
-                    child: Text(
-                      " Register Here",
+                    GestureDetector(
+                      onTap: widget.onUserTap,
+                      child: const Text(
+                        " Sign Up Here",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(212, 167, 253, 1),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+        
+                // register for vendor account
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Are you a vendor?",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: pvGold,
-                      ),
+                          color: Theme.of(context).colorScheme.inversePrimary),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    GestureDetector(
+                      onTap: widget.onVendorTap,
+                      child: Text(
+                        " Register Here",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: pvGold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
