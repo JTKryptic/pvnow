@@ -52,9 +52,6 @@ class _RegisterPageState extends State<RegisterPage> {
           email: emailController.text,
           password: passwordController.text,
         );
-
-        userCredential.user!.updateDisplayName(nameController.text);
-
         // create user document and add to firestore database
         createUserDocument(userCredential, nameController.text);
 
@@ -73,6 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> createUserDocument(
       UserCredential? userCredential, String name) async {
     if (userCredential != null && userCredential.user != null) {
+      userCredential.user!.updateDisplayName(nameController.text);
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(userCredential.user!.email)

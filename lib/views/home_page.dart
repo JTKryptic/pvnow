@@ -20,6 +20,8 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    String name = currentUser.displayName!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
@@ -35,7 +37,7 @@ class _HomepageState extends State<Homepage> {
             padding: EdgeInsets.all(25),
             child: Column(
               children: [
-                if (currentUser.displayName!.isEmpty)
+                if (name.isEmpty)
                   Text("Logged in as: ${currentUser.email!}")
                 else
                   Text("Logged in as: ${currentUser.displayName!}"),

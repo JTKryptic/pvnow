@@ -1,5 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:pvnow/theme/pv_colors.dart';
+import 'package:pvnow/views/calendar.dart';
+import 'package:pvnow/views/home_page.dart';
+import 'package:pvnow/views/humpday.dart';
+import 'package:pvnow/views/marketplace.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -11,9 +17,18 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
+  final List _pages = [
+    Homepage(),
+    MarketplacePage(),
+    HumpdayPage(),
+    CalendarPage(),
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => _pages[_selectedIndex]));
     });
   }
 
