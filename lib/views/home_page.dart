@@ -36,12 +36,7 @@ class _HomepageState extends State<Homepage> {
           child: Padding(
             padding: EdgeInsets.all(25),
             child: Column(
-              children: [
-                if (name.isEmpty)
-                  Text("Logged in as: ${currentUser.email!}")
-                else
-                  Text("Logged in as: ${currentUser.displayName!}"),
-              ],
+              children: [],
             ),
           ),
         ),

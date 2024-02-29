@@ -15,7 +15,17 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
+  static int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => _pages[index]),
+      );
+    });
+  }
 
   final List _pages = [
     Homepage(),
@@ -23,14 +33,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HumpdayPage(),
     CalendarPage(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => _pages[_selectedIndex]));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
