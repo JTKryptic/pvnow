@@ -22,7 +22,7 @@ class MyDrawer extends StatelessWidget {
             children: [
               DrawerHeader(
                 child: Image.asset(
-                  'assets/icons/logo.png',
+                  'assets/images/logo.png',
                   width: 200,
                   height: 200,
                 ),

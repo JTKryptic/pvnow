@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 // logo
                 Image.asset(
-                  'assets/icons/logo.png',
+                  'assets/images/logo.png',
                   width: 250,
                   height: 250,
                 ),

@@ -2,9 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pvnow/components/bottom_nav.dart';
 import 'package:pvnow/components/drawer.dart';
+import 'package:pvnow/components/post.dart';
 import 'package:pvnow/theme/pv_colors.dart';
 
 class Homepage extends StatefulWidget {
@@ -20,11 +23,11 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    String name = currentUser.displayName!;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text(
+          "Home",
+        ),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
         iconTheme: IconThemeData(color: pvGoldLight),
@@ -34,9 +37,32 @@ class _HomepageState extends State<Homepage> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(25),
+            padding: EdgeInsets.only(
+              top: 20,
+              bottom: 20,
+              left: 10,
+              right: 10,
+            ),
             child: Column(
-              children: [],
+              children: [
+                MyPost(
+                  message: "This is a post description",
+                  user: "Locstar Hairstyles",
+                  userImage: Image.asset('assets/images/hairpost.png'),
+                ),
+                const SizedBox(height: 25),
+                MyPost(
+                  message: "This is a post description",
+                  user: "Ten/18 Apparel",
+                  userImage: Image.asset('assets/images/clothingpost.png'),
+                ),
+                const SizedBox(height: 25),
+                MyPost(
+                  message: "This is a post description",
+                  user: "Makeup By K",
+                  userImage: Image.asset('assets/images/makeuppost.png'),
+                ),
+              ],
             ),
           ),
         ),
