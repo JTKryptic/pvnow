@@ -38,7 +38,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
     // make sure passwords match
     if (passwordController.text != confirmPwController.text) {
       // Pop loading circle
-      Navigator.pop(context);
+      if (context.mounted) Navigator.pop(context);
 
       // notify users that the passwords do not match
       displayMessageToUser("Passwords don't match!", context);

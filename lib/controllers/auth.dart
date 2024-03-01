@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/controllers/login_register.dart';
-import 'package:pvnow/views/home_page.dart';
-import 'package:pvnow/views/vendor_home.dart';
+import 'package:pvnow/views/pages/home_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -13,24 +11,6 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final collection = FirebaseFirestore.instance.collection("Vendors");
-  bool isVendor = false;
-
-  // function to toggle isVendor boolean to display Vendor Home
-  displayVendorHome(String? id) async {
-    final doc = await collection.doc(id!).get();
-
-    if (doc.exists == true) {
-      setState(() {
-        isVendor = true;
-      });
-    } else {
-      setState(() {
-        isVendor = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,12 +19,7 @@ class _AuthPageState extends State<AuthPage> {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            displayVendorHome(snapshot.data!.email);
-            if (isVendor) {
-              return const VendorHomepage();
-            } else {
-              return const Homepage();
-            }
+            return const Homepage();
           }
           // user is not logged in
           else {

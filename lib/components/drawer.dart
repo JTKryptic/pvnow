@@ -1,13 +1,44 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  final collection = FirebaseFirestore.instance.collection("Vendors");
+
+  bool isVendor = false;
 
   void logout() {
     FirebaseAuth.instance.signOut();
+  }
+
+  toggleIsVendor(String? id) async {
+    final doc = await collection.doc(id!).get();
+
+    if (doc.exists == true && context.mounted) {
+      setState(() {
+        isVendor = true;
+      });
+    } else {
+      setState(() {
+        isVendor = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    if (context.mounted) toggleIsVendor(currentUser.email!);
+    super.initState();
   }
 
   @override
@@ -35,13 +66,36 @@ class MyDrawer extends StatelessWidget {
                   title: Text("SETTINGS"),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("ACCOUNT"),
+              if (!isVendor)
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text("ACCOUNT"),
+                  ),
                 ),
-              ),
+              if (isVendor)
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(Icons.store),
+                    title: Text("STOREFRONT"),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/storefront');
+                    },
+                  ),
+                ),
+              if (isVendor)
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(Icons.app_registration),
+                    title: Text("REGISTER FOR HUMPDAY"),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/humpdayRegister');
+                    },
+                  ),
+                ),
             ],
           ),
 

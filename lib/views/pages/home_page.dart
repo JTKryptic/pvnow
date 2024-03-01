@@ -2,9 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pvnow/components/bottom_nav.dart';
 import 'package:pvnow/components/drawer.dart';
 import 'package:pvnow/components/post.dart';
@@ -54,7 +52,7 @@ class _HomepageState extends State<Homepage> {
                 MyPost(
                   message: "This is a post description",
                   user: "Ten/18 Apparel",
-                  userImage: Image.asset('assets/images/clothingpost.png'),
+                  userImage: Image.asset('assets/images/clothing.png'),
                 ),
                 const SizedBox(height: 25),
                 MyPost(

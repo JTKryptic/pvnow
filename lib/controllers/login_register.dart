@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pvnow/views/login_page.dart';
-import 'package:pvnow/views/register_page.dart';
-import 'package:pvnow/views/vendor_registration_page.dart';
+import 'package:pvnow/views/registration/login_page.dart';
+import 'package:pvnow/views/registration/register_page.dart';
+import 'package:pvnow/views/registration/vendor_registration_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
@@ -22,7 +22,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
     });
   }
 
-  // toggle between login and register
+  // toggle between register and vendor register
   void toggleVendorRegister() {
     setState(() {
       showVendorRegistration = !showVendorRegistration;

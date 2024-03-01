@@ -29,32 +29,28 @@ class MyPost extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.all(25),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image(
-                image: userImage.image,
-                width: 340,
-              ),
-              const SizedBox(height: 15),
-              Text(
-                user,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
-                  fontSize: 20,
-                ),
-              ),
-              Text(
-                message,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          )
+          Image(
+            image: userImage.image,
+            width: double.infinity,
+          ),
+          const SizedBox(height: 15),
+          Text(
+            user,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            message,
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
         ],
       ),
     );

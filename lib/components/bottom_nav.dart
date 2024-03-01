@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:pvnow/theme/pv_colors.dart';
-import 'package:pvnow/views/calendar.dart';
-import 'package:pvnow/views/home_page.dart';
-import 'package:pvnow/views/humpday.dart';
-import 'package:pvnow/views/marketplace.dart';
+import 'package:pvnow/views/pages/calendar.dart';
+import 'package:pvnow/views/pages/home_page.dart';
+import 'package:pvnow/views/pages/humpday.dart';
+import 'package:pvnow/views/pages/marketplace.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});

@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:pvnow/controllers/auth.dart';
 import 'package:pvnow/firebase_options.dart';
 import 'package:pvnow/theme/dark_mode.dart';
-import 'package:pvnow/theme/light_mode.dart';
-import 'package:pvnow/views/calendar.dart';
-import 'package:pvnow/views/home_page.dart';
-import 'package:pvnow/views/humpday.dart';
-import 'package:pvnow/views/marketplace.dart';
+import 'package:pvnow/views/registration/humpday_register.dart';
+import 'package:pvnow/views/pages/storefront.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AuthPage(),
-      theme: lightMode,
+      theme: darkMode,
       darkTheme: darkMode,
       routes: {
-        '/home': (context) => Homepage(),
-        '/marketplace': (context) => MarketplacePage(),
-        '/humpday': (context) => HumpdayPage(),
-        '/calendar': (context) => CalendarPage(),
+        '/humpdayRegister': (context) => HumpdayRegister(),
+        '/storefront': (context) => StorefrontPage(),
       },
     );
   }

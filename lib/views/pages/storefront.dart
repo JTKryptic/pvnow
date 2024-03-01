@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/drawer.dart';
 
-class VendorHomepage extends StatelessWidget {
-  const VendorHomepage({super.key});
+class StorefrontPage extends StatelessWidget {
+  const StorefrontPage({super.key});
 
   void logout() {
     FirebaseAuth.instance.signOut();
@@ -15,7 +15,7 @@ class VendorHomepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vendor Home"),
+        title: Text("Storefront"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
       ),
