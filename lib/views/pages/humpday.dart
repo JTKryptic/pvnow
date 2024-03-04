@@ -12,9 +12,10 @@ class HumpdayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create a list of menu items
     List<String> menuItems = [
-      'Vendor 1',
-      'Vendor 2',
-      'Vendor 3',
+      'Locstar Hairstyles',
+      'Ten/18 Apparel',
+      'Makeup By K',
+
     ];
 
     return Scaffold(
@@ -32,6 +33,15 @@ class HumpdayPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,          
           children: [
             // Add an image to the top half of the page
+            Text(
+            DateTime.now().toString(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 35,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
             Image.asset('assets/images/mscmap.png'),
       
             // Scrollable menu
@@ -45,9 +55,14 @@ class HumpdayPage extends StatelessWidget {
                           item,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 55,
+                            fontSize: 35,
+                            decoration: TextDecoration.underline,
+                            
+                            
+                            
 
                           ),
+                          textAlign: TextAlign.center,
                         ))
                     .toList(),
               ),
