@@ -2,7 +2,7 @@
 
 The codebase for our senior design project. 
 
-PV Now is an app for students on PVAMU campus to connect with vendors and become more informed about their products and events. It will also serve to inform students about what vendors will be present in the Memorial Student Center on Hump Day, which is every Wednesday. 
+PV Now is an app for on-campus vendors at PVAMU to better market and promote their products and events to students. It will also serve as a space for students to connect with vendors and be informed about what vendors will be present in the Memorial Student Center on Hump Day, which is every Wednesday. 
 
 ## Getting Started
 
