@@ -6,7 +6,7 @@ import 'package:pvnow/components/drawer.dart';
 import 'package:pvnow/theme/pv_colors.dart';
 
 class MarketplacePage extends StatefulWidget {
-  const MarketplacePage({super.key});
+  const MarketplacePage({Key? key}) : super(key: key);
 
   @override
   State<MarketplacePage> createState() => _MarketplacePageState();
@@ -24,6 +24,62 @@ class _MarketplacePageState extends State<MarketplacePage> {
       ),
       drawer: MyDrawer(),
       bottomNavigationBar: BottomNavBar(),
+      body: CustomScrollView(
+        slivers: [
+          buildBody(),
+        ],
+      ),
     );
+  }
+
+  Widget buildBody() => SliverToBoxAdapter(
+        child: SizedBox(
+          height: 1000,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              MyVendor(
+                key: UniqueKey(),
+                companyName: 'Comp App',
+                photo: 'https://picsum.photos/200/300',
+                productType: 'Streetwear',
+                bio: 'I am a great company',
+              ),
+              MyVendor(
+                key: UniqueKey(),
+                companyName: 'Comp App',
+                photo: 'https://picsum.photos/200/300',
+                productType: 'Streetwear',
+                bio: 'I am a great company',
+              ),
+              SizedBox(height: 100),
+            ],
+          ),
+        ),
+      );
+}
+
+class MyVendor extends StatelessWidget {
+  @override
+  // ignore: overridden_fields
+  final Key? key;
+  final String companyName;
+  final String photo;
+  final String productType;
+  final String bio;
+
+  const MyVendor({
+    this.key,
+    required this.companyName,
+    required this.photo,
+    required this.productType,
+    required this.bio,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // Your implementation for MyVendor widget
+        );
   }
 }

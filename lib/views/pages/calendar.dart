@@ -37,16 +37,14 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget content(){
     return Column(
       children: [
-        Container(
-          child: TableCalendar(
-            headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true),
-            availableGestures: AvailableGestures.all,
-            focusedDay: today, 
-            firstDay: DateTime.utc(2010, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
+        TableCalendar(
+          headerStyle: HeaderStyle(formatButtonVisible: false, titleCentered: true),
+          availableGestures: AvailableGestures.all,
+          focusedDay: today, 
+          firstDay: DateTime.utc(2010, 1, 1),
+          lastDay: DateTime.utc(2030, 12, 31),
 
-            ),
-        )
+          )
       ],
 
     );

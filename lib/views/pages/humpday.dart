@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/bottom_nav.dart';
@@ -57,7 +57,12 @@ class HumpdayPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 35,
                             decoration: TextDecoration.underline,
-                            
+                            shadows: [
+                              Shadow(blurRadius: 20.0,
+                              color: Colors.purple,
+                              offset: Offset(0.0, 0.0),
+                              ),
+                            ],
                             
                             
 
