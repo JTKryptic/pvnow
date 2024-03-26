@@ -15,7 +15,6 @@ class HumpdayPage extends StatelessWidget {
       'Locstar Hairstyles',
       'Ten/18 Apparel',
       'Makeup By K',
-
     ];
 
     return Scaffold(
@@ -29,27 +28,26 @@ class HumpdayPage extends StatelessWidget {
       bottomNavigationBar: BottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,          
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Add an image to the top half of the page
             Text(
-            DateTime.now().toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 35,
-              color: Colors.white,
+              DateTime.now().toString(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 35,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
             Image.asset('assets/images/mscmap.png'),
-      
+
             // Scrollable menu
             Container(
               height: MediaQuery.of(context).size.height * 0.5,
               child: ListView(
                 shrinkWrap: true,
-
                 children: menuItems
                     .map((item) => Text(
                           item,
@@ -58,14 +56,12 @@ class HumpdayPage extends StatelessWidget {
                             fontSize: 35,
                             decoration: TextDecoration.underline,
                             shadows: [
-                              Shadow(blurRadius: 20.0,
-                              color: Colors.purple,
-                              offset: Offset(0.0, 0.0),
+                              Shadow(
+                                blurRadius: 20.0,
+                                color: Colors.purple,
+                                offset: Offset(0.0, 0.0),
                               ),
                             ],
-                            
-                            
-
                           ),
                           textAlign: TextAlign.center,
                         ))

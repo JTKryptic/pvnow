@@ -26,7 +26,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
   final TextEditingController confirmPwController = TextEditingController();
 
   // register function
-  void registerUser() async {
+  void registerVendor() async {
     // loading circle
     showDialog(
       context: context,
@@ -102,6 +102,16 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                   height: 250,
                 ),
 
+                Text(
+                  "Vendor Registration",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+
                 // name
                 MyTextField(
                   hintText: "Name",
@@ -158,7 +168,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                 // register button
                 MyButton(
                   text: "Register",
-                  onTap: registerUser,
+                  onTap: registerVendor,
                   buttonColor: pvPurple,
                   textColor: Theme.of(context).colorScheme.primary,
                 ),

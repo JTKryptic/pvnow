@@ -1,14 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/drawer.dart';
 
-class StorefrontPage extends StatelessWidget {
+class StorefrontPage extends StatefulWidget {
   const StorefrontPage({super.key});
 
-  void logout() {
-    FirebaseAuth.instance.signOut();
+  @override
+  State<StorefrontPage> createState() => _StorefrontPageState();
+}
+
+class _StorefrontPageState extends State<StorefrontPage> {
+  void goHome() {
+    Navigator.pushNamed(context, '/home');
   }
 
   @override
@@ -18,6 +22,7 @@ class StorefrontPage extends StatelessWidget {
         title: Text("Storefront"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
+        actions: [IconButton(onPressed: goHome, icon: Icon(Icons.home))],
       ),
       drawer: MyDrawer(),
     );

@@ -18,7 +18,9 @@ class _MyDrawerState extends State<MyDrawer> {
   bool isVendor = false;
 
   void logout() {
-    FirebaseAuth.instance.signOut();
+    setState(() {
+      FirebaseAuth.instance.signOut();
+    });
   }
 
   toggleIsVendor(String? id) async {
@@ -79,7 +81,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   padding: const EdgeInsets.only(left: 25),
                   child: ListTile(
                     leading: Icon(Icons.store),
-                    title: Text("STOREFRONT"),
+                    title: Text("MY STOREFRONT"),
                     onTap: () {
                       Navigator.pushNamed(context, '/storefront');
                     },
@@ -98,7 +100,6 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.only(bottom: 50, left: 25),
             child: ListTile(

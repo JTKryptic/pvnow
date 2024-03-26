@@ -99,6 +99,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 250,
                 ),
 
+                const SizedBox(height: 10),
+
+                Text(
+                  "User Registration",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
                 // username
                 MyTextField(
                   hintText: "Name",
