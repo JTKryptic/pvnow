@@ -25,7 +25,6 @@ class MyTextField extends StatelessWidget {
         hintText: hintText,
       ),
       obscureText: obscureText,
-      maxLines: null,
     );
   }
 }
