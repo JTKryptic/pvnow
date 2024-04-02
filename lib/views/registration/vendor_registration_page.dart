@@ -52,7 +52,7 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
-        userCredential.user!.updateDisplayName(nameController.text);
+        userCredential.user!.updateDisplayName(brandnameController.text);
 
         // create user document and add to firestore database
         createVendorDocument(

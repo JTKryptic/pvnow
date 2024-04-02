@@ -11,8 +11,8 @@ class StorefrontPage extends StatefulWidget {
 }
 
 class _StorefrontPageState extends State<StorefrontPage> {
-  void goHome() {
-    Navigator.pushNamed(context, '/home');
+  void goBack() {
+    Navigator.pop(context);
   }
 
   @override
@@ -22,7 +22,9 @@ class _StorefrontPageState extends State<StorefrontPage> {
         title: Text("Storefront"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
-        actions: [IconButton(onPressed: goHome, icon: Icon(Icons.home))],
+        actions: [
+          IconButton(onPressed: goBack, icon: Icon(Icons.keyboard_return))
+        ],
       ),
       drawer: MyDrawer(),
     );

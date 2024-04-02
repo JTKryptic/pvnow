@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pvnow/controllers/auth.dart';
 import 'package:pvnow/firebase_options.dart';
 import 'package:pvnow/theme/dark_mode.dart';
+import 'package:pvnow/views/pages/add_post.dart';
 import 'package:pvnow/views/pages/home_page.dart';
 import 'package:pvnow/views/registration/humpday_register.dart';
 import 'package:pvnow/views/pages/storefront.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/humpdayRegister': (context) => HumpdayRegister(),
         '/storefront': (context) => StorefrontPage(),
         '/home': (context) => Homepage(),
+        '/addPost': (context) => AddPost(),
       },
     );
   }
