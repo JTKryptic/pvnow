@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, prefer_interpolation_to_compose_strings
 
 import 'dart:io';
 
@@ -41,14 +41,22 @@ class _AddPostState extends State<AddPost> {
     String description = _descriptionController.text;
     // Upload image to Firebase storage
     String fileName =
-        "${currentUser.displayName!}: ${_postTitleController.text}";
+        currentUser.displayName!.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
+            ": " +
+            _postTitleController.text.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '');
     Reference reference =
         FirebaseStorage.instance.ref().child('images/$fileName');
     UploadTask uploadTask = reference.putFile(_image!);
     TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
     String imageUrl = await taskSnapshot.ref.getDownloadURL();
     // Save the image URL to Firestore
-    FirebaseFirestore.instance.collection('Posts').add({
+    FirebaseFirestore.instance
+        .collection('Posts')
+        .doc(currentUser.displayName!
+                .replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
+            ": " +
+            _postTitleController.text.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), ''))
+        .set({
       'image': imageUrl,
       'title': _postTitleController.text,
       'description': description,

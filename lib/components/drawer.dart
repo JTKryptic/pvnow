@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pvnow/theme/pv_colors.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -13,9 +14,12 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   final currentUser = FirebaseAuth.instance.currentUser!;
-  final collection = FirebaseFirestore.instance.collection("Vendors");
+  final vendorCollection = FirebaseFirestore.instance.collection("Vendors");
+  final humpdayCollection =
+      FirebaseFirestore.instance.collection("Humpday Vendors");
 
   bool isVendor = false;
+  bool isRegistered = false;
 
   void logout() {
     setState(() {
@@ -24,7 +28,7 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   toggleIsVendor(String? id) async {
-    final doc = await collection.doc(id!).get();
+    final doc = await vendorCollection.doc(id!).get();
 
     if (doc.exists == true && context.mounted) {
       setState(() {
@@ -37,9 +41,70 @@ class _MyDrawerState extends State<MyDrawer> {
     }
   }
 
+  toggleIsRegistered(String? id) async {
+    final doc = await humpdayCollection.doc(id!).get();
+
+    if (doc.exists == true && context.mounted) {
+      setState(() {
+        isRegistered = true;
+      });
+    } else {
+      setState(() {
+        isRegistered = false;
+      });
+    }
+  }
+
+  void registerForHumday() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Register For Humpday'),
+        content:
+            const Text('Would you like to register for the upcoming Humday?'),
+        actions: [
+          // Cancel button
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("Cancel", style: TextStyle(color: pvPurple))),
+
+          // Delete button
+          TextButton(
+            onPressed: () {
+              FirebaseFirestore.instance
+                  .collection('Humpday Vendors')
+                  .doc(currentUser.displayName)
+                  .set({
+                'name': currentUser.displayName,
+                'approved': true,
+              });
+              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('You have registered!'),
+                  content: const Text(
+                      'Make sure you pay for your tablespace on Panther Marketplace to be approved!'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("OK", style: TextStyle(color: pvPurple)),
+                    ),
+                  ],
+                ),
+              );
+            },
+            child: Text("Register", style: TextStyle(color: pvPurple)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   void initState() {
     if (context.mounted) toggleIsVendor(currentUser.email!);
+    if (context.mounted) toggleIsRegistered(currentUser.displayName!);
     super.initState();
   }
 
@@ -87,15 +152,13 @@ class _MyDrawerState extends State<MyDrawer> {
                     },
                   ),
                 ),
-              if (isVendor)
+              if (isVendor && !isRegistered)
                 Padding(
                   padding: const EdgeInsets.only(left: 25),
                   child: ListTile(
                     leading: Icon(Icons.app_registration),
                     title: Text("REGISTER FOR HUMPDAY"),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/humpdayRegister');
-                    },
+                    onTap: registerForHumday,
                   ),
                 ),
             ],
