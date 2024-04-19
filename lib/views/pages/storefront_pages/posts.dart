@@ -20,7 +20,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.red,
+                  color: Colors.gray,
                   child: Column(
                     children: [
                       
@@ -43,7 +43,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.orange,
+                  color: Colors.gray,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -64,7 +64,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.yellow,
+                  color: Colors.gray,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -86,7 +86,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.green,
+                  color: Colors.gray,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -107,7 +107,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.blue,
+                  color: Colors.gray,
                   child: Column(
                     children: [
                       AspectRatio(
