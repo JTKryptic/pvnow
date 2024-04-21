@@ -5,9 +5,10 @@ import 'package:pvnow/controllers/auth.dart';
 import 'package:pvnow/firebase_options.dart';
 import 'package:pvnow/theme/dark_mode.dart';
 import 'package:pvnow/views/pages/add_post.dart';
+import 'package:pvnow/views/pages/admin_home.dart';
 import 'package:pvnow/views/pages/home_page.dart';
-import 'package:pvnow/views/registration/humpday_register.dart';
 import 'package:pvnow/views/pages/storefront.dart';
+import 'package:pvnow/views/registration/admin_login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       theme: darkMode,
       darkTheme: darkMode,
       routes: {
-        '/humpdayRegister': (context) => HumpdayRegister(),
+        '/adminHome': (context) => AdminHome(),
+        '/adminLogin': (context) => AdminLoginPage(),
         '/storefront': (context) => StorefrontPage(),
         '/home': (context) => Homepage(),
         '/addPost': (context) => AddPost(),

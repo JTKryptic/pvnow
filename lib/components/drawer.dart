@@ -15,10 +15,12 @@ class MyDrawer extends StatefulWidget {
 class _MyDrawerState extends State<MyDrawer> {
   final currentUser = FirebaseAuth.instance.currentUser!;
   final vendorCollection = FirebaseFirestore.instance.collection("Vendors");
+  final adminCollection = FirebaseFirestore.instance.collection("Admin");
   final humpdayCollection =
       FirebaseFirestore.instance.collection("Humpday Vendors");
 
   bool isVendor = false;
+  bool isAdmin = false;
   bool isRegistered = false;
 
   void logout() {
@@ -37,6 +39,20 @@ class _MyDrawerState extends State<MyDrawer> {
     } else {
       setState(() {
         isVendor = false;
+      });
+    }
+  }
+
+  toggleIsAdmin(String? id) async {
+    final doc = await adminCollection.doc(id!).get();
+
+    if (doc.exists == true && context.mounted) {
+      setState(() {
+        isAdmin = true;
+      });
+    } else {
+      setState(() {
+        isAdmin = false;
       });
     }
   }
@@ -76,7 +92,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   .doc(currentUser.displayName)
                   .set({
                 'name': currentUser.displayName,
-                'approved': true,
+                'approved': false,
               });
               Navigator.pop(context);
               showDialog(
@@ -105,6 +121,7 @@ class _MyDrawerState extends State<MyDrawer> {
   void initState() {
     if (context.mounted) toggleIsVendor(currentUser.email!);
     if (context.mounted) toggleIsRegistered(currentUser.displayName!);
+    if (context.mounted) toggleIsAdmin(currentUser.email!);
     super.initState();
   }
 
@@ -126,14 +143,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
               const SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text("SETTINGS"),
-                ),
-              ),
-              if (!isVendor)
+              if (!isVendor && !isAdmin)
                 Padding(
                   padding: const EdgeInsets.only(left: 25),
                   child: ListTile(

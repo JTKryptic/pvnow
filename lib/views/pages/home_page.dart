@@ -119,12 +119,6 @@ class _HomepageState extends State<Homepage> {
                     }
                   },
                 ),
-                Text(
-                  "Logged in as ${currentUser.displayName!}",
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
               ],
             ),
           ),

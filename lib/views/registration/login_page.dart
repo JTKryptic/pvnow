@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pvnow/components/admin_drawer.dart';
 import 'package:pvnow/components/button.dart';
 import 'package:pvnow/components/helper_functions.dart';
 import 'package:pvnow/components/textfield.dart';
@@ -57,101 +58,104 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // logo
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: 250,
-                  height: 250,
-                ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+      ),
+      drawer: AdminDrawer(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+              // logo
+              Image.asset(
+                'assets/images/logo.png',
+                width: 250,
+                height: 250,
+              ),
 
-                // email
-                MyTextField(
-                  hintText: "Email",
-                  obscureText: false,
-                  controller: emailController,
-                ),
+              // email
+              MyTextField(
+                hintText: "Email",
+                obscureText: false,
+                controller: emailController,
+              ),
 
-                const SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-                // password
-                MyTextField(
-                  hintText: "Password",
-                  obscureText: true,
-                  controller: passwordController,
-                ),
+              // password
+              MyTextField(
+                hintText: "Password",
+                obscureText: true,
+                controller: passwordController,
+              ),
 
-                const SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-                // forgot password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text("Forgot Password")],
-                ),
+              // forgot password
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [Text("Forgot Password")],
+              ),
 
-                const SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-                // log in button
-                MyButton(
-                  text: "Log In",
-                  onTap: login,
-                  buttonColor: pvPurple,
-                  textColor: Theme.of(context).colorScheme.primary,
-                ),
+              // log in button
+              MyButton(
+                text: "Log In",
+                onTap: login,
+                buttonColor: pvPurple,
+                textColor: Theme.of(context).colorScheme.primary,
+              ),
 
-                const SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-                // register for user account
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have an account?",
+              // register for user account
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary),
+                  ),
+                  GestureDetector(
+                    onTap: widget.onUserTap,
+                    child: const Text(
+                      " Sign Up Here",
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary),
-                    ),
-                    GestureDetector(
-                      onTap: widget.onUserTap,
-                      child: const Text(
-                        " Sign Up Here",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(212, 167, 253, 1),
-                        ),
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(212, 167, 253, 1),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
+              ),
 
-                // register for vendor account
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Are you a vendor?",
+              // register for vendor account
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Are you a vendor?",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary),
+                  ),
+                  GestureDetector(
+                    onTap: widget.onVendorTap,
+                    child: Text(
+                      " Register Here",
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary),
-                    ),
-                    GestureDetector(
-                      onTap: widget.onVendorTap,
-                      child: Text(
-                        " Register Here",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: pvGoldLight,
-                        ),
+                        fontWeight: FontWeight.bold,
+                        color: pvGoldLight,
                       ),
-                    )
-                  ],
-                ),
-              ],
-            ),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         ),
       ),

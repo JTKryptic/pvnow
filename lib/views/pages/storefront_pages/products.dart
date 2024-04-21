@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/drawer.dart';
 
-class StorefrontPage extends StatefulWidget {
-  const StorefrontPage({super.key});
+class Products extends StatefulWidget {
+  const Products({super.key});
 
   @override
-  State<StorefrontPage> createState() => _StorefrontPageState();
+  State<Products> createState() => _ProductsState();
 }
 
-class _StorefrontPageState extends State<StorefrontPage> {
+class _ProductsState extends State<Products> {
   void goBack() {
     Navigator.pop(context);
   }

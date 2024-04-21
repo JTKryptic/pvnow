@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/bottom_nav.dart'; // If this is the same as custom_nav_bar, you can remove one
 import 'package:pvnow/components/drawer.dart'; // If this is the same as custom_drawer, you can remove one
@@ -10,40 +12,17 @@ class Posts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar:
-          AppBar(backgroundColor: Colors.purple, title: Text("List of Posts")),
-      drawer: MyDrawer(),
-      body: ListView(
+        backgroundColor: Colors.blue,
+        appBar: AppBar(
+            backgroundColor: Colors.purple, title: Text("List of Posts")),
+        drawer: MyDrawer(),
+        body: ListView(
           children: [
             Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.gray,
-                  child: Column(
-                    children: [
-                      
-                      AspectRatio(
-                        aspectRatio: 2,
-                        child: Container(
-                            decoration: BoxDecoration(color: Colors.white),
-                            padding: EdgeInsets.all(5),
-                            margin: const EdgeInsets.all(5),
-                            child: Image.asset('lib/images/1.png')
-                            //Icon(Icons.propane)
-                            ),
-                      ),
-                      Align(alignment: Alignment.topLeft,),
-                      Text("Hey we will be here"),
-                    ],
-                  ),
-                )),
-            Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  height: 250,
-                  color: Colors.gray,
+                  color: Colors.grey,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -56,27 +35,8 @@ class Posts extends StatelessWidget {
                             //Icon(Icons.propane)
                             ),
                       ),
-                      Text("Hey we will be here"),
-                    ],
-                  ),
-                )),
-            Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  height: 250,
-                  color: Colors.gray,
-                  child: Column(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 2,
-                        child: Container(
-
-                            decoration: BoxDecoration(color: Colors.white),
-                            padding: EdgeInsets.all(5),
-                            margin: const EdgeInsets.all(5),
-                            child: Image.asset('lib/images/1.png')
-                            //Icon(Icons.propane)
-                            ),
+                      Align(
+                        alignment: Alignment.topLeft,
                       ),
                       Text("Hey we will be here"),
                     ],
@@ -86,7 +46,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.gray,
+                  color: Colors.grey,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -107,7 +67,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.gray,
+                  color: Colors.grey,
                   child: Column(
                     children: [
                       AspectRatio(
@@ -124,8 +84,50 @@ class Posts extends StatelessWidget {
                     ],
                   ),
                 )),
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  height: 250,
+                  color: Colors.grey,
+                  child: Column(
+                    children: [
+                      AspectRatio(
+                        aspectRatio: 2,
+                        child: Container(
+                            decoration: BoxDecoration(color: Colors.white),
+                            padding: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
+                            child: Image.asset('lib/images/1.png')
+                            //Icon(Icons.propane)
+                            ),
+                      ),
+                      Text("Hey we will be here"),
+                    ],
+                  ),
+                )),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                height: 250,
+                color: Colors.grey,
+                child: Column(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 2,
+                      child: Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                          padding: EdgeInsets.all(5),
+                          margin: const EdgeInsets.all(5),
+                          child: Image.asset('lib/images/1.png')
+                          //Icon(Icons.propane)
+                          ),
+                    ),
+                    Text("Hey we will be here"),
+                  ],
+                ),
+              ),
+            ),
           ],
         ));
-    );
   }
 }
