@@ -12,17 +12,17 @@ class Posts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         appBar: AppBar(
             backgroundColor: Colors.purple, title: Text("List of Posts")),
-        drawer: MyDrawer(),
+        drawer: Drawer(),
         body: ListView(
           children: [
             Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.grey,
+                  color: Colors.grey[600],
                   child: Column(
                     children: [
                       AspectRatio(
@@ -35,10 +35,12 @@ class Posts extends StatelessWidget {
                             //Icon(Icons.propane)
                             ),
                       ),
-                      Align(
-                        alignment: Alignment.topLeft,
+                      SizedBox(
+                        child: Text(
+                          "Hey we will be here",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                       ),
-                      Text("Hey we will be here"),
                     ],
                   ),
                 )),
@@ -46,7 +48,8 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.grey,
+                  //opacity: .5,
+                  color: Colors.grey[600],
                   child: Column(
                     children: [
                       AspectRatio(
@@ -55,11 +58,16 @@ class Posts extends StatelessWidget {
                             decoration: BoxDecoration(color: Colors.white),
                             padding: EdgeInsets.all(5),
                             margin: const EdgeInsets.all(5),
-                            child: Image.asset('lib/images/1.png')
+                            child: Image.asset('lib/images/2.png')
                             //Icon(Icons.propane)
                             ),
                       ),
-                      Text("Hey we will be here"),
+                      SizedBox(
+                        child: Text(
+                          "Hey we will be here",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 )),
@@ -67,7 +75,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.grey,
+                  color: Colors.grey[600],
                   child: Column(
                     children: [
                       AspectRatio(
@@ -76,11 +84,16 @@ class Posts extends StatelessWidget {
                             decoration: BoxDecoration(color: Colors.white),
                             padding: EdgeInsets.all(5),
                             margin: const EdgeInsets.all(5),
-                            child: Image.asset('lib/images/1.png')
+                            child: Image.asset('lib/images/3.png')
                             //Icon(Icons.propane)
                             ),
                       ),
-                      Text("Hey we will be here"),
+                      SizedBox(
+                        child: Text(
+                          "Hey we will be here",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 )),
@@ -88,7 +101,7 @@ class Posts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Container(
                   height: 250,
-                  color: Colors.grey,
+                  color: Colors.grey[600],
                   child: Column(
                     children: [
                       AspectRatio(
@@ -97,11 +110,16 @@ class Posts extends StatelessWidget {
                             decoration: BoxDecoration(color: Colors.white),
                             padding: EdgeInsets.all(5),
                             margin: const EdgeInsets.all(5),
-                            child: Image.asset('lib/images/1.png')
+                            child: Image.asset('lib/images/4.png')
                             //Icon(Icons.propane)
                             ),
                       ),
-                      Text("Hey we will be here"),
+                      SizedBox(
+                        child: Text(
+                          "Hey we will be here",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 )),

@@ -13,10 +13,13 @@ class Profile extends StatelessWidget {
       drawer: Drawer(),
       body: ListView(children: [
         //image
-        Icon(Icons.fax),
-        Text("Title of store"),
-        Text("About them"),
-        Text("contact"),
+        Image.asset('lib/images/9.png'),
+        Text("Ten18 Apperal",
+            style: TextStyle(
+                fontSize: 50, fontWeight: FontWeight.bold, color: Colors.grey)),
+        Text("About them", style: TextStyle(color: Colors.grey)),
+        Text("contact", style: TextStyle(color: Colors.grey))
+     
       ]),
     );
   }
