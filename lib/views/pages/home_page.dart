@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/bottom_nav.dart';
-import 'package:pvnow/components/button.dart';
 import 'package:pvnow/components/drawer.dart';
 import 'package:pvnow/components/post.dart';
 import 'package:pvnow/theme/pv_colors.dart';
@@ -34,10 +33,6 @@ class _HomepageState extends State<Homepage> {
         isVendor = false;
       });
     }
-  }
-
-  void addPost() {
-    Navigator.pushNamed(context, '/addPost');
   }
 
   @override
@@ -70,29 +65,6 @@ class _HomepageState extends State<Homepage> {
             ),
             child: Column(
               children: [
-                if (isVendor)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.5, bottom: 12.5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: pvPurple.withOpacity(.4),
-                            spreadRadius: 2,
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: MyButton(
-                        text: "Add Post",
-                        onTap: addPost,
-                        buttonColor: pvPurpleDark,
-                        textColor: Theme.of(context).colorScheme.inversePrimary,
-                      ),
-                    ),
-                  ),
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('Posts')
@@ -115,9 +87,16 @@ class _HomepageState extends State<Homepage> {
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else {
-                      return CircularProgressIndicator();
+                      return Text("");
                     }
                   },
+                ),
+                Text(
+                  'No more posts',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),

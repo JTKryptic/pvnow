@@ -2,12 +2,14 @@
 import "package:firebase_core/firebase_core.dart";
 import 'package:flutter/material.dart';
 import 'package:pvnow/controllers/auth.dart';
+import 'package:pvnow/controllers/login_register.dart';
 import 'package:pvnow/firebase_options.dart';
 import 'package:pvnow/theme/dark_mode.dart';
 import 'package:pvnow/views/pages/add_post.dart';
+import 'package:pvnow/views/pages/add_product.dart';
 import 'package:pvnow/views/pages/admin_home.dart';
 import 'package:pvnow/views/pages/home_page.dart';
-import 'package:pvnow/views/pages/storefront.dart';
+import 'package:pvnow/views/pages/private_storefront.dart';
 import 'package:pvnow/views/registration/admin_login_page.dart';
 
 void main() async {
@@ -29,9 +31,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/adminHome': (context) => AdminHome(),
         '/adminLogin': (context) => AdminLoginPage(),
-        '/storefront': (context) => StorefrontPage(),
+        '/storefront': (context) => PrivateStorefrontPage(),
         '/home': (context) => Homepage(),
         '/addPost': (context) => AddPost(),
+        '/addProduct': (context) => AddProduct(),
+        '/login': (context) => LoginOrRegister(),
       },
     );
   }

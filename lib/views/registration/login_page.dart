@@ -27,28 +27,14 @@ class _LoginPageState extends State<LoginPage> {
 
   // login function
   void login() async {
-    // loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
     //try signing in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-
-      // pop loading circle
-      if (mounted) Navigator.pop(context);
     }
 
     // display any errors
     on FirebaseAuthException catch (e) {
-      // Pop loading circle
-      Navigator.pop(context);
-
       // display error message to user
       displayMessageToUser(e.code, context);
     }

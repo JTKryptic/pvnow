@@ -12,20 +12,20 @@ import 'package:pvnow/components/textfield.dart';
 import 'package:pvnow/components/title_text.dart';
 import 'package:pvnow/theme/pv_colors.dart';
 
-class AddPost extends StatefulWidget {
-  const AddPost({super.key});
+class AddProduct extends StatefulWidget {
+  const AddProduct({super.key});
 
   @override
-  State<AddPost> createState() => _AddPostState();
+  State<AddProduct> createState() => _AddProductState();
 }
 
-class _AddPostState extends State<AddPost> {
+class _AddProductState extends State<AddProduct> {
   File? _image;
   final picker = ImagePicker();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _postTitleController = TextEditingController();
+  final TextEditingController _productNameController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
   final currentUser = FirebaseAuth.instance.currentUser!;
-  final collection = FirebaseFirestore.instance.collection("Users");
 
   Future getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -37,31 +37,34 @@ class _AddPostState extends State<AddPost> {
     });
   }
 
-  Future<void> uploadPost() async {
+  Future<void> uploadProduct() async {
     String description = _descriptionController.text;
     // Upload image to Firebase storage
-    String fileName =
-        currentUser.displayName!.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
-            ": " +
-            _postTitleController.text.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '');
+    String fileName = currentUser.displayName!
+            .replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
+        ": " +
+        _productNameController.text.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '');
     String brandname = currentUser.displayName!;
-    Reference reference =
-        FirebaseStorage.instance.ref().child('$brandname/images/$fileName');
+    Reference reference = FirebaseStorage.instance
+        .ref()
+        .child('$brandname/productImages/$fileName');
     UploadTask uploadTask = reference.putFile(_image!);
     TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
     String imageUrl = await taskSnapshot.ref.getDownloadURL();
     // Save the image URL to Firestore
     FirebaseFirestore.instance
-        .collection('Posts')
-        .doc(currentUser.displayName!
-                .replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
-            ": " +
-            _postTitleController.text.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), ''))
+        .collection('Products')
+        .doc(
+            currentUser.displayName!.replaceAll(RegExp('[^a-zA-Z0-9\\s]'), '') +
+                ": " +
+                _productNameController.text
+                    .replaceAll(RegExp('[^a-zA-Z0-9\\s]'), ''))
         .set({
-      'image': imageUrl,
-      'title': _postTitleController.text,
+      'imageUrl': imageUrl,
+      'productName': _productNameController.text,
       'description': description,
       'vendorName': currentUser.displayName,
+      'price': double.parse(_priceController.text),
       'timestamp': Timestamp.now(),
     });
     if (context.mounted) Navigator.pop(context);
@@ -70,7 +73,7 @@ class _AddPostState extends State<AddPost> {
   @override
   void dispose() {
     _descriptionController.dispose();
-    _postTitleController.dispose();
+    _productNameController.dispose();
     super.dispose();
   }
 
@@ -78,7 +81,7 @@ class _AddPostState extends State<AddPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Post'),
+        title: Text('Add Product'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
       ),
@@ -89,17 +92,17 @@ class _AddPostState extends State<AddPost> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TitleText(
-                  text: "Post Title",
+                  text: "Product Title",
                   mainAxisAlignment: MainAxisAlignment.start),
               SizedBox(height: 25),
               MyTextField(
-                controller: _postTitleController,
-                hintText: 'Enter Post Title',
+                controller: _productNameController,
+                hintText: 'Enter Product Title',
                 obscureText: false,
               ),
               SizedBox(height: 25),
               TitleText(
-                  text: "Post Image",
+                  text: "Product Image",
                   mainAxisAlignment: MainAxisAlignment.start),
               _image != null
                   ? Padding(
@@ -119,18 +122,29 @@ class _AddPostState extends State<AddPost> {
               ),
               SizedBox(height: 25),
               TitleText(
-                  text: "Post Description",
+                  text: "Product Description",
                   mainAxisAlignment: MainAxisAlignment.start),
               SizedBox(height: 25),
               MyTextField(
                 controller: _descriptionController,
-                hintText: 'Enter Post Description',
+                hintText: 'Enter Product Description',
                 obscureText: false,
               ),
               SizedBox(height: 25),
+              TitleText(
+                text: "Product Price",
+                mainAxisAlignment: MainAxisAlignment.start,
+              ),
+              SizedBox(height: 25),
+              MyTextField(
+                controller: _priceController,
+                hintText: 'Enter Product Price',
+                obscureText: false,
+              ),
+              const SizedBox(height: 25),
               MyButton(
-                  text: "Post",
-                  onTap: uploadPost,
+                  text: "Add Product",
+                  onTap: uploadProduct,
                   buttonColor: pvPurpleDark,
                   textColor: Theme.of(context).colorScheme.inversePrimary),
             ],

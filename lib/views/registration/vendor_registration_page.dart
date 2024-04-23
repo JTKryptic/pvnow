@@ -1,12 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/button.dart';
 import 'package:pvnow/components/helper_functions.dart';
 import 'package:pvnow/components/textfield.dart';
 import 'package:pvnow/theme/pv_colors.dart';
+import 'package:pvnow/views/registration/vendor_information.dart';
 
 class VendorRegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -20,67 +18,31 @@ class VendorRegisterPage extends StatefulWidget {
 class _VendorRegisterPageState extends State<VendorRegisterPage> {
   // text controllers
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController brandnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
 
   // register function
-  void registerVendor() async {
-    // loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
+  void next() async {
     // make sure passwords match
     if (passwordController.text != confirmPwController.text) {
-      // Pop loading circle
-      if (context.mounted) Navigator.pop(context);
-
       // notify users that the passwords do not match
       displayMessageToUser("Passwords don't match!", context);
     }
 
     // if passwords match
     else {
-      try {
-        // try to create user
-        UserCredential? userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
-
-        userCredential.user!.updateDisplayName(brandnameController.text);
-
-        // create user document and add to firestore database
-        createVendorDocument(
-            userCredential, nameController.text, brandnameController.text);
-
-        // Pop loading circle
-        if (context.mounted) Navigator.pop(context);
-      } on FirebaseAuthException catch (e) {
-        // Pop loading circle
-        Navigator.pop(context);
-
-        // display error message to user
-        displayMessageToUser(e.code, context);
-      }
-    }
-  }
-
-  Future<void> createVendorDocument(
-      UserCredential? userCredential, String name, String brandname) async {
-    if (userCredential != null && userCredential.user != null) {
-      await FirebaseFirestore.instance
-          .collection("Vendors")
-          .doc(userCredential.user!.email)
-          .set({
-        'email': userCredential.user!.email,
-        'name': name,
-        'brandname': brandname,
-      });
+      // navigate to the VendorInformationPage
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VendorInformationPage(
+            name: nameController.text,
+            email: emailController.text,
+            password: passwordController.text,
+          ),
+        ),
+      );
     }
   }
 
@@ -121,15 +83,6 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
 
                 const SizedBox(height: 10),
 
-                // name
-                MyTextField(
-                  hintText: "Brand Name",
-                  obscureText: false,
-                  controller: brandnameController,
-                ),
-
-                const SizedBox(height: 10),
-
                 // email
                 MyTextField(
                   hintText: "Email",
@@ -155,27 +108,19 @@ class _VendorRegisterPageState extends State<VendorRegisterPage> {
                   controller: confirmPwController,
                 ),
 
-                const SizedBox(height: 10),
-
-                // forgot password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text("Forgot Password")],
-                ),
-
                 const SizedBox(height: 25),
 
                 // register button
                 MyButton(
-                  text: "Register",
-                  onTap: registerVendor,
+                  text: "Next",
+                  onTap: next,
                   buttonColor: pvPurple,
                   textColor: Theme.of(context).colorScheme.primary,
                 ),
 
                 const SizedBox(height: 25),
 
-                // register button
+                // Back to login button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

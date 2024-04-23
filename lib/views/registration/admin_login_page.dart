@@ -20,14 +20,6 @@ class AdminLoginPageState extends State<AdminLoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   void login() async {
-    // loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
     //try signing in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -53,9 +45,6 @@ class AdminLoginPageState extends State<AdminLoginPage> {
 
     // display any errors
     on FirebaseAuthException catch (e) {
-      // Pop loading circle
-      Navigator.pop(context);
-
       // display error message to user
       displayMessageToUser(e.code, context);
     }

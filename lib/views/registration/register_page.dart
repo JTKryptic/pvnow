@@ -26,19 +26,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // register function
   void registerUser() async {
-    // loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
     // make sure passwords match
     if (passwordController.text != confirmPwController.text) {
-      // Pop loading circle
-      Navigator.pop(context);
-
       // notify users that the passwords do not match
       displayMessageToUser("Passwords don't match!", context);
     }
@@ -54,13 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
         // create user document and add to firestore database
         createUserDocument(userCredential, nameController.text);
-
-        // Pop loading circle
-        if (context.mounted) Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
-        // Pop loading circle
-        Navigator.pop(context);
-
         // display error message to user
         displayMessageToUser(e.code, context);
       }
@@ -143,14 +126,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: "Confirm Password",
                   obscureText: true,
                   controller: confirmPwController,
-                ),
-
-                const SizedBox(height: 10),
-
-                // forgot password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text("Forgot Password")],
                 ),
 
                 const SizedBox(height: 25),

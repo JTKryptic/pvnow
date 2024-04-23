@@ -24,9 +24,8 @@ class _MyDrawerState extends State<MyDrawer> {
   bool isRegistered = false;
 
   void logout() {
-    setState(() {
-      FirebaseAuth.instance.signOut();
-    });
+    FirebaseAuth.instance.signOut();
+    setState(() {});
   }
 
   toggleIsVendor(String? id) async {
@@ -176,18 +175,21 @@ class _MyDrawerState extends State<MyDrawer> {
           Padding(
             padding: const EdgeInsets.only(bottom: 50, left: 25),
             child: ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              title: Text(
-                "LOGOUT",
-                style: TextStyle(
+                leading: Icon(
+                  Icons.logout,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-              ),
-              onTap: logout,
-            ),
+                title: Text(
+                  "LOGOUT",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    logout();
+                  });
+                }),
           ),
         ],
       ),

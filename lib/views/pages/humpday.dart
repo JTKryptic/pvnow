@@ -1,14 +1,45 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pvnow/components/bottom_nav.dart'; // If this is the same as custom_nav_bar, you can remove one
 import 'package:pvnow/components/drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pvnow/theme/pv_colors.dart';
+import 'package:pvnow/views/pages/private_storefront.dart';
+import 'package:pvnow/views/pages/public_storefront.dart';
 
-class HumpdayPage extends StatelessWidget {
+class HumpdayPage extends StatefulWidget {
   const HumpdayPage({Key? key}) : super(key: key);
+
+  @override
+  State<HumpdayPage> createState() => _HumpdayPageState();
+}
+
+class _HumpdayPageState extends State<HumpdayPage> {
+  final currentUser = FirebaseAuth.instance.currentUser!;
+
+  goToStorefront(name) {
+    if (currentUser.displayName == name) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PrivateStorefrontPage(),
+        ),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PublicStorefrontPage(
+              brandname: name,
+              email: currentUser.email!,
+              logo: Image.network(currentUser.photoURL!)),
+        ),
+      );
+    }
+  }
 
   DateTime getNextWednesday() {
     DateTime now = DateTime.now();
@@ -29,6 +60,7 @@ class HumpdayPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Humpday"),
         centerTitle: true,
+        iconTheme: IconThemeData(color: pvGoldLight),
         backgroundColor: Theme.of(context).colorScheme.tertiary,
       ),
       drawer: MyDrawer(), // Ensure this is consistent across both snippets
@@ -80,14 +112,17 @@ class HumpdayPage extends StatelessWidget {
                 return ListView.builder(
                   itemCount: vendorNames.length,
                   itemBuilder: (context, index) {
-                    return Text(
-                      vendorNames[index],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35,
-                        color: pvPurple,
+                    return GestureDetector(
+                      onTap: () => goToStorefront(vendorNames[index]),
+                      child: Text(
+                        vendorNames[index],
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35,
+                          color: pvPurple,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     );
                   },
                 );
