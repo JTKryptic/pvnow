@@ -50,6 +50,7 @@ class _PrivateStorefrontPageState extends State<PrivateStorefrontPage> {
   @override
   Widget build(BuildContext context) {
     String email = currentUser.email!;
+
     return DefaultTabController(
       initialIndex: 0,
       length: 2,

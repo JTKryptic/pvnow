@@ -48,6 +48,7 @@ class _MyProductState extends State<MyProduct> {
               FirebaseFirestore.instance
                   .collection('Products')
                   .where('vendorName', isEqualTo: widget.vendorName)
+                  .where('productName', isEqualTo: widget.productName)
                   .get()
                   .then(
                 (snapshot) {

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, prefer_typing_uninitialized_variables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +30,6 @@ class _PublicStorefrontPageState extends State<PublicStorefrontPage> {
   void initState() {
     super.initState();
     fetchVendor();
-    contactStrings();
-  }
-
-  void contactStrings() {
-    setState(() {
-      phoneNumber = currentVendorData!['phoneNumber'];
-      website = currentVendorData!['website'];
-    });
   }
 
   void fetchVendor() async {
@@ -46,6 +38,8 @@ class _PublicStorefrontPageState extends State<PublicStorefrontPage> {
     if (snapshot.exists) {
       setState(() {
         currentVendorData = snapshot.data();
+        phoneNumber = currentVendorData!['phoneNumber'];
+        website = currentVendorData!['website'];
       });
     }
   }
@@ -82,7 +76,7 @@ class _PublicStorefrontPageState extends State<PublicStorefrontPage> {
                             children: [
                               Image(
                                 image: widget.logo.image,
-                                width: 200,
+                                width: 175,
                               ),
                               Text(
                                 widget.brandname,

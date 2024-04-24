@@ -24,8 +24,9 @@ class _MyDrawerState extends State<MyDrawer> {
   bool isRegistered = false;
 
   void logout() {
-    FirebaseAuth.instance.signOut();
-    setState(() {});
+    setState(() {
+      FirebaseAuth.instance.signOut();
+    });
   }
 
   toggleIsVendor(String? id) async {
@@ -92,6 +93,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   .set({
                 'name': currentUser.displayName,
                 'approved': false,
+                'email': currentUser.email,
               });
               Navigator.pop(context);
               showDialog(
